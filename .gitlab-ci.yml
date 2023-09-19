@@ -1,0 +1,21 @@
+# Build Docker image with CI/CD and push to the GitLab registry.
+image:
+  name: gcr.io/kaniko-project/executor:debug
+  entrypoint: [""]
+before_script:
+  - wget https://eoelab.org:1024/index.php/s/ac3eQY4byy4mK2g/download/eoelab.org.crt
+  - mv eoelab.org.crt /kaniko/ssl/certs/additional-ca-cert-bundle.crt
+web-build:
+  stage: build
+  needs: []
+  script:
+    - cd web
+    - /kaniko/executor
+      --context ./
+      --dockerfile "Dockerfile"
+      --cache=true
+      --cache-copy-layers=true
+      --cache-run-layers=true
+      --snapshot-mode=redo
+      --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
+      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:web"
