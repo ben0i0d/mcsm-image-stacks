@@ -8,7 +8,9 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
 
-RUN git clone --single-branch -b master --depth 1 https://gitee.com/MCSManager/MCSManager-Daemon-Production /opt/docker-mcsm/releases/daemon && \
+RUN apt-get update --yes && apt-get install --yes --no-install-recommends openjdk-17-jre-headless && \
+    apt-get clean && rm -rf /var/lib/apt/lists/* && \
+    git clone --single-branch -b master --depth 1 https://gitee.com/MCSManager/MCSManager-Daemon-Production /opt/docker-mcsm/releases/daemon && \
     cd /opt/docker-mcsm/releases/daemon && npm i --production --registry=https://registry.npmmirror.com
 
 WORKDIR /opt/docker-mcsm/releases/daemon
