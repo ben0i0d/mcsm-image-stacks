@@ -31,7 +31,7 @@ web-build:
       --snapshot-mode=redo
       --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
       --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:web"
-daemon-java17-build:
+daemon-jre17-build:
   stage: build
   needs: [base-build]
   script:
