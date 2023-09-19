@@ -1,4 +1,4 @@
-FROM eoelab.org:1032/build-image-stacks/gameserver-image-stacks/gameserver:base
+FROM eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:base
 
 LABEL maintainer="Pd.ch <cpd233@outlook.com>"
 
