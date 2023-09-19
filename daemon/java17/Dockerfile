@@ -2,7 +2,7 @@ FROM eoelab.org:1032/mirrored-sources/mirrored-sources/debian:bookworm
 
 LABEL maintainer="Pd.ch <cpd233@outlook.com>"
 
-EXPOSE 24444
+EXPOSE 24444 25565-25580
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
