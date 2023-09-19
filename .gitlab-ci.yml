@@ -37,7 +37,7 @@ daemon-java17-build:
   stage: build
   needs: [base-build]
   script:
-    - cd daemon/java17
+    - cd daemon/jre17
     - /kaniko/executor
       --context ./
       --dockerfile "Dockerfile"
@@ -46,4 +46,24 @@ daemon-java17-build:
       --cache-run-layers=true
       --snapshot-mode=redo
       --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
-      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:daemon-java17"
+      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:daemon-jre17"
+daemon-steam-build:
+  stage: build
+  needs: [base-build]
+  script:
+    - cd daemon/steam
+    - /kaniko/executor
+      --build-arg "http_proxy=http://192.168.2.175:7890"
+      --build-arg "HTTP_PROXY=http://192.168.2.175:7890"
+      --build-arg "https_proxy=http://192.168.2.175:7890"
+      --build-arg "HTTPS_PROXY=http://192.168.2.175:7890"
+      --build-arg "no_proxy=127.0.0.1,localhost,172.0.0.0/8,192.0.0.0/8"
+      --build-arg "NO_PROXY=127.0.0.1,localhost,172.0.0.0/8,192.0.0.0/8"
+      --context ./
+      --dockerfile "Dockerfile"
+      --cache=true
+      --cache-copy-layers=true
+      --cache-run-layers=true
+      --snapshot-mode=redo
+      --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
+      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:daemon-steam"
