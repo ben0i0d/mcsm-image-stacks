@@ -19,3 +19,17 @@ web-build:
       --snapshot-mode=redo
       --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
       --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:web"
+daemon-java17-build:
+  stage: build
+  needs: []
+  script:
+    - cd daemon/java17
+    - /kaniko/executor
+      --context ./
+      --dockerfile "Dockerfile"
+      --cache=true
+      --cache-copy-layers=true
+      --cache-run-layers=true
+      --snapshot-mode=redo
+      --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
+      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:daemon-java17"
