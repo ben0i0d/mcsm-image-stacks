@@ -28,7 +28,7 @@
 ```mermaid
 	graph LR
 	A(base)-->B(web)
-	B-->C(daemon)
+	A-->C(daemon)
     C-->F(JRE-17)-->I(MC>=1.17)
 ```
 ## 上游
