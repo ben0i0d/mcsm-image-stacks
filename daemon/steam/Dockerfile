@@ -2,6 +2,8 @@ FROM eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:base
 
 LABEL maintainer="Pd.ch <cpd233@outlook.com>"
 
+EXPOSE 24445
+
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN sed -i 's/main/main contrib non-free non-free-firmware/g' /etc/apt/sources.list.d/debian.sources &&\

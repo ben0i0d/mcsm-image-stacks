@@ -2,7 +2,7 @@ FROM eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:base
 
 LABEL maintainer="Pd.ch <cpd233@outlook.com>"
 
-EXPOSE 24444 25565-25570
+EXPOSE 24444
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
