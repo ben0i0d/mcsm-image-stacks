@@ -9,7 +9,20 @@
 1. 用于构建游戏服务器镜像项目，构建mcsm镜像在K8S上提供服务
 2. 使用单纯的容器不利于可视化，打包mcsm daemon到镜像中利于使用  
 
-**使用时务必注意持久化数据**
+## 持久化目录
+1. web
+/opt/docker-mcsm/releases/web/data
+
+/opt/docker-mcsm/releases/web/logs
+
+/opt/docker-mcsm/releases/daemon/data/Config(只读挂载)
+
+2. daemon
+	- jre17
+		/opt/docker-mcsm}/releases/daemon/data
+		
+		/opt/docker-mcsm}/releases/daemon/logs
+
 
 ## 镜像依赖关系
 ```mermaid
