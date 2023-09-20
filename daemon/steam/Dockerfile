@@ -4,8 +4,6 @@ LABEL maintainer="Pd.ch <cpd233@outlook.com>"
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
-#COPY conf/debian.sources /etc/apt/sources.list.d/debian.sources
-
 RUN sed -i 's/main/main contrib non-free non-free-firmware/g' /etc/apt/sources.list.d/debian.sources &&\
     echo steam steam/question select "I AGREE" | debconf-set-selections &&\
     echo steam steam/license note '' | debconf-set-selections &&\

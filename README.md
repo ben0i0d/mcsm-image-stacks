@@ -11,6 +11,7 @@
 
 ## 持久化目录
 1. web
+
 /opt/docker-mcsm/releases/web/data
 
 /opt/docker-mcsm/releases/web/logs
@@ -19,6 +20,7 @@
 
 2. daemon
 	- jre17
+	
 		/opt/docker-mcsm}/releases/daemon/data
 		
 		/opt/docker-mcsm}/releases/daemon/logs
