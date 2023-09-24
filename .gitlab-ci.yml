@@ -31,18 +31,18 @@ web-build:
       --snapshot-mode=redo
       --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
       --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:web"
-daemon-jre17-build:
+daemon-jre-build:
   stage: build
   needs: [base-build]
   script:
-    - cd daemon/jre17
+    - cd daemon/jre
     - /kaniko/executor
       --context ./
       --dockerfile "Dockerfile"
       --cache=false
       --snapshot-mode=redo
       --cache-repo "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/cache"
-      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:daemon-jre17"
+      --destination "eoelab.org:1032/build-image-stacks/mcsm-image-stacks/mcsm:daemon-jre"
 daemon-steam-build:
   stage: build
   needs: [base-build]
