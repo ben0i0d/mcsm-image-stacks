@@ -19,19 +19,35 @@
 /opt/docker-mcsm/releases/daemon/data/Config(只读挂载)
 
 2. daemon
-	- jre17
+	- jre
 	
-		/opt/docker-mcsm}/releases/daemon/data
+		/opt/docker-mcsm/releases/daemon/data
 		
-		/opt/docker-mcsm}/releases/daemon/logs
+		/opt/docker-mcsm/releases/daemon/logs
+
+		/opt/docker-mcsm/releases/daemon/data/Config
+
+	- steam
+	
+		/opt/docker-mcsm/releases/daemon/data
+		
+		/opt/docker-mcsm/releases/daemon/logs
+
+		/opt/docker-mcsm/releases/daemon/data/Config
+
+		/root/.steam/steam/steamapps
 
 
 ## 镜像依赖关系
 ```mermaid
 	graph LR
-	A(base)-->B(web)
-	A-->C(daemon)
-    C-->F(JRE-17)-->I(MC>=1.17)
+	A(Base)-->B(Web)
+	A-->C(Daemon)
+	C-->D(Steam)
+    C-->F(JRE)
+	F-->G(JRE-17)
+	F-->H(JRE-11)
+	F-->I(JRE-8)
 ```
 ## 上游
 MCSmanager：https://github.com/MCSManager/MCSManager  
