@@ -18,7 +18,7 @@ COPY cert/eoelab.org.crt /usr/local/share/ca-certificates/eoelab.org.crt
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources && \
     apt-get update --yes && apt-get upgrade --yes && \
-    apt-get install --yes --no-install-recommends ca-certificates locales git zip unzip nodejs npm && \
+    apt-get install --yes --no-install-recommends ca-certificates gnupg curl locales git zip unzip nodejs npm && \
     update-ca-certificates && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
     echo "zh_CN.UTF-8 UTF-8">/etc/locale.gen && locale-gen

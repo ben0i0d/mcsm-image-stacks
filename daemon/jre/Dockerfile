@@ -8,15 +8,13 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 USER root
 
-COPY adoptium.gpg /tmp/adoptium.gpg
-
-RUN cat /tmp/adoptium.gpg | tee /etc/apt/keyrings/adoptium.asc  && \
-    echo "deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://mirrors.tuna.tsinghua.edu.cn/Adoptium/deb $(awk -F= '/^VERSION_CODENAME/{print$2}' /etc/os-release) main" | tee /etc/apt/sources.list.d/adoptium.list  && \
-    apt-get update --yes && apt-get install --yes --no-install-recommends temurin-17-jre temurin-11-jre temurin-8-jre  && \
+RUN curl -s https://repos.azul.com/azul-repo.key | sudo gpg --dearmor -o /usr/share/keyrings/azul.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/azul.gpg] https://repos.azul.com/zulu/deb stable main" | sudo tee /etc/apt/sources.list.d/zulu.list && \
+    apt-get update --yes && apt-get install --yes --no-install-recommends zulu17-ca-jre-headless zulu11-ca-jre-headless zulu8-ca-jre-headless  && \
     apt-get clean && rm -rf /var/lib/apt/lists/* && \
-    ln -s /usr/lib/jvm/temurin-17-jre-amd64/bin/java /usr/bin/java17 && \
-    ln -s /usr/lib/jvm/temurin-11-jre-amd64/bin/java /usr/bin/java11 && \
-    ln -s /usr/lib/jvm/temurin-8-jre-amd64/bin/java /usr/bin/java8 && \
+    ln -s /usr/lib/jvm/zulu17-ca-amd64 /usr/bin/java17 && \
+    ln -s /usr/lib/jvm/zulu11-ca-amd64 /usr/bin/java11 && \
+    ln -s /usr/lib/jvm/zulu8-ca-amd64 /usr/bin/java8 && \
     git clone --single-branch -b master --depth 1 https://gitee.com/MCSManager/MCSManager-Daemon-Production /opt/docker-mcsm/releases/daemon && \
     cd /opt/docker-mcsm/releases/daemon && npm i --production --registry=https://registry.npmmirror.com
 
