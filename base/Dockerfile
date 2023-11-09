@@ -14,7 +14,7 @@ ENV DEBIAN_FRONTEND=noninteractive \
     TZ=Asia/Shanghai
 
 # Copy files
-COPY cert/eoelab.org.crt /usr/local/share/ca-certificates/eoelab.org.crt
+COPY cert/cert.pem /usr/local/share/ca-certificates/eoelab.org.crt
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list.d/debian.sources && \
     apt-get update --yes && apt-get upgrade --yes && \
